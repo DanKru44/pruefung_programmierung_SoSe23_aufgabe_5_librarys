@@ -1,56 +1,69 @@
 #include "COMP_lib.h"
 #include <math.h>
+#include <stdio.h>
 
-
-int COMP_berechnung_2_norm_int ( COMP_int komplex_ganzzahl ) 
+int COMP_berechnung_2_norm_int ( COMP_komplex komplex_ganzzahl ) 
 {
-	return sqrt ( komplex_ganzzahl.real_ganz * komplex_ganzzahl.real_ganz + komplex_ganzzahl.imaginaer_ganz * komplex_ganzzahl.imaginaer_ganz ) ;
+	if ( komplex_ganzzahl.typ == COMP_int )
+	{
+		return sqrt ( komplex_ganzzahl.int_daten.real * komplex_ganzzahl.int_daten.real + komplex_ganzzahl.int_daten.imaginaer * komplex_ganzzahl.int_daten.imaginaer ) ;
+	}
+	else
+	{	
+		printf ( "Falscher Typ der komplexen Zahl. In dieser Funktion können nur komplexe Zahlen vom Typ integer verwendet werden.\n" ) ;
+	}
 }
 
 
-float COMP_berechnung_2_norm_float ( COMP_float komplex_gleitkomma ) 
+float COMP_berechnung_2_norm_float ( COMP_komplex komplex_gleitkomma ) 
 {
-	return sqrt ( komplex_gleitkomma.real_gleitkomma * komplex_gleitkomma.real_gleitkomma + komplex_gleitkomma.imaginaer_gleitkomma * komplex_gleitkomma.imaginaer_gleitkomma ) ;
+	if ( komplex_gleitkomma.typ == COMP_float )
+	{
+		return sqrt ( komplex_gleitkomma.float_daten.real * komplex_gleitkomma.float_daten.real + komplex_gleitkomma.float_daten.imaginaer * komplex_gleitkomma.float_daten.imaginaer ) ;
+	}
+	else
+	{	
+		printf ( "Falscher Typ der komplexen Zahl. In dieser Funktion können nur komplexe Zahlen vom Typ float verwendet werden.\n" ) ;
+	}
 }
 
-
-void COMP_addition_komplex ( void *komplexe_zahl_1 , void *komplexe_zahl_2 , void *komplex_ergebniss )
+void COMP_addition_komplex ( COMP_komplex komplexe_zahl_1 , COMP_komplex komplexe_zahl_2 , COMP_komplex *komplex_ergebniss )
 {
-	unsigned int groesse_int = sizeof ( COMP_int ) , groesse_float = sizeof ( COMP_float ) , groesse_zahl_1 = sizeof ( *komplexe_zahl_1 ) ;
-   	unsigned int groesse_zahl_2 = sizeof ( *komplexe_zahl_2 ) ;
-
-	if ( groesse_zahl_1 == groesse_int && groesse_zahl_2 == groesse_int )
+	if ( komplexe_zahl_1.typ == komplexe_zahl_2.typ )
 	{
-		COMP_int *zahl_1_pointer = komplexe_zahl_1 ;
-		COMP_int *zahl_2_pointer = komplexe_zahl_2 ; 
-		COMP_int *ergebniss_pointer = komplex_ergebniss ;
-		ergebniss_pointer -> real_ganz = ( zahl_1_pointer -> real_ganz ) + ( zahl_2_pointer -> real_ganz ) ;
-		ergebniss_pointer -> imaginaer_ganz = ( zahl_1_pointer -> imaginaer_ganz ) + ( zahl_2_pointer -> imaginaer_ganz ) ;
-	}
-
-	else if ( ( groesse_zahl_1  == groesse_float )  || ( groesse_zahl_2 == groesse_float ) )
-	{
-		COMP_float *zahl_1_pointer = komplexe_zahl_1 ;
-		COMP_float *zahl_2_pointer = komplexe_zahl_2 ;
-		COMP_float *ergebniss_pointer = komplex_ergebniss ;
-		
-		if ( groesse_zahl_1 == groesse_int )
+		komplex_ergebniss -> typ = komplexe_zahl_1.typ ;
+	
+		if ( komplexe_zahl_1.typ == COMP_int )
 		{
-			COMP_int *zahl_1_int_pointer = komplexe_zahl_1 ;
-			zahl_1_pointer -> real_gleitkomma = (float) zahl_1_int_pointer -> real_ganz ;
-			zahl_1_pointer -> imaginaer_gleitkomma = (float) zahl_1_int_pointer -> imaginaer_ganz ;
+			komplex_ergebniss -> int_daten.real = komplexe_zahl_1.int_daten.real + komplexe_zahl_2.int_daten.real ;
+			komplex_ergebniss -> int_daten.imaginaer = komplexe_zahl_1.int_daten.imaginaer + komplexe_zahl_2.int_daten.imaginaer ;
 		}
 
-		else 
+		else
 		{
-			COMP_int *zahl_2_int_pointer = komplexe_zahl_2 ;
-			zahl_2_pointer -> real_gleitkomma = (float) zahl_2_int_pointer -> real_ganz ;
-			zahl_2_pointer -> imaginaer_gleitkomma = (float) zahl_2_int_pointer -> imaginaer_ganz ;
+			komplex_ergebniss -> float_daten.real = komplexe_zahl_1.float_daten.real + komplexe_zahl_2.float_daten.real ;
+			komplex_ergebniss -> float_daten.imaginaer = komplexe_zahl_1.float_daten.imaginaer + komplexe_zahl_2.float_daten.imaginaer ;
 		}
-
-		ergebniss_pointer -> real_gleitkomma = ( zahl_1_pointer -> real_gleitkomma ) + ( zahl_2_pointer -> real_gleitkomma ) ;
-		ergebniss_pointer -> imaginaer_gleitkomma = ( zahl_1_pointer -> imaginaer_gleitkomma ) + ( zahl_2_pointer -> imaginaer_gleitkomma ) ;
 	}
 
+	else if	( ( komplexe_zahl_1.typ ==  COMP_float && komplexe_zahl_2.typ == COMP_int ) || ( komplexe_zahl_1.typ == COMP_int && komplexe_zahl_2.typ == COMP_float ) )
+	{
+		komplex_ergebniss -> typ == COMP_float ;
+
+		if (komplexe_zahl_1.typ == COMP_int )
+		{
+			komplex_ergebniss -> float_daten.real = komplexe_zahl_1.int_daten.real + komplexe_zahl_2.float_daten.real ;
+			komplex_ergebniss -> float_daten.imaginaer = komplexe_zahl_1.int_daten.imaginaer + komplexe_zahl_2.float_daten.imaginaer ;
+		}
+		else if ( komplexe_zahl_2.typ == COMP_int )
+		{
+			komplex_ergebniss -> float_daten.real = komplexe_zahl_1.float_daten.real + komplexe_zahl_2.int_daten.real ;
+			komplex_ergebniss -> float_daten.imaginaer = komplexe_zahl_1.float_daten.imaginaer + komplexe_zahl_2.int_daten.imaginaer ;
+		}
+		else
+		{
+			printf ( "Ungültige Typen einer oder beider komplexen Zahlen\n" ) ;
+		}
+	}
 }
 

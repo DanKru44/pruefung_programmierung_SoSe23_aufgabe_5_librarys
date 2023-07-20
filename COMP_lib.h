@@ -3,25 +3,36 @@
 #ifndef COMP_LIB_H
 #define COMP_LIB_H
 
-typedef struct  
+typedef enum
 {
-	int real_ganz ;
-	char rechenzeichen_ganz ;
-	int imaginaer_ganz ;
-} COMP_int ;
+	COMP_int ,
+	COMP_float 
+} COMP_TYP ;
 
 typedef struct
-{ 
-	float real_gleitkomma ;
-	char rechenzeichen_gleitkomma ;
-	float imaginaer_gleitkomma ;
-} COMP_float ;
+{
+	COMP_TYP typ ;
+   	union
+   	{	   
+		struct
+		{
+			int real ;
+			int imaginaer ;
+		} int_daten ;
 
-int COMP_berechnung_2_norm_int ( COMP_int komplex_ganzzahl ) ;
+		struct
+		{	
+			float real ;
+			float imaginaer ;
+		} float_daten ;
+	} ;
+} COMP_komplex ;
 
-float COMP_berechnung_2_norm_float ( COMP_float komplex_gleitkomma ) ;
+int COMP_berechnung_2_norm_int ( COMP_komplex komplex_ganzzahl ) ;
 
-void COMP_addition_komplex ( void *komplexe_zahl_1 , void *komplexe_zahl_2 , void *komplex_ergebniss ) ;
+float COMP_berechnung_2_norm_float ( COMP_komplex komplex_gleitkomma ) ;
+
+void COMP_addition_komplex ( COMP_komplex komplexe_zahl_1 , COMP_komplex komplexe_zahl_2 , COMP_komplex *komplex_ergebniss ) ;
 
 
 #endif
