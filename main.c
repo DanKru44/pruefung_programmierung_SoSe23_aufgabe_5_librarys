@@ -3,47 +3,38 @@
 
 int main () 
 {
-	COMP_int zahl_int_1 =  
+
+	COMP_komplex zahl_int_1 =  
 	{
-		.real_ganz = 2 ,
-		.rechenzeichen_ganz = '+' ,
-		.imaginaer_ganz = 3 
+		.typ = COMP_int ,
+		.int_daten.real = 2 ,
+		.int_daten.imaginaer = 3 
 	} ;
 		
-	COMP_int zahl_int_2 =
+	COMP_komplex zahl_int_2 =
 	{
-		.real_ganz = 3 ,
-		.rechenzeichen_ganz = '-' ,
-		.imaginaer_ganz = 6 
-	} ;
-
-	COMP_int zahl_int_3 = 
-	{
-		.real_ganz = 0 ,
-		.imaginaer_ganz = 0 
+		.typ = COMP_int ,
+		.int_daten.real = 3 ,
+		.int_daten.imaginaer = -6 
 	} ;
 
 	int ergebniss_2_norm_int = 0 ;
 
-	COMP_float zahl_float_1 = 
+	COMP_komplex zahl_float_1 = 
 	{
-		.real_gleitkomma = 2.5 ,
-		.rechenzeichen_gleitkomma = '-' ,
-		.imaginaer_gleitkomma = 4.75 
+		.typ = COMP_float ,
+		.float_daten.real = 2.5 ,
+		.float_daten.imaginaer = -4.75 
 	} ;
 
-	COMP_float zahl_float_2 = 
+	COMP_komplex zahl_float_2 = 
 	{
-		.real_gleitkomma = 3.21 ,
-		.rechenzeichen_gleitkomma = '+' ,
-		.imaginaer_gleitkomma = 9.232345 
+		.typ = COMP_float ,
+		.float_daten.real = 3.21 ,
+		.float_daten.imaginaer = 9.232345 
 	} ;
 
-	COMP_float zahl_float_3 =
-	{
-		.real_gleitkomma = 0 ,
-		.imaginaer_gleitkomma = 0 
-	} ;
+	COMP_komplex zahl_ergebniss ;
 
 	float ergebniss_2_norm_float ;
 
@@ -53,6 +44,14 @@ int main ()
 
 	ergebniss_2_norm_float = COMP_berechnung_2_norm_float ( zahl_float_2 ) ;
 	printf ( "Die 2-Norm der float Zahl beträgt: %f\n" , ergebniss_2_norm_float ) ;
+	
+	COMP_addition_komplex ( zahl_int_1 , zahl_int_2 , &zahl_ergebniss ) ;
+	printf ( "Die addition der beiden int Zahlen ergibt : %i+%ii\n" , zahl_ergebniss.int_daten.real , zahl_ergebniss.int_daten.imaginaer ) ;
+	
+	COMP_addition_komplex ( zahl_float_1 , zahl_int_1 , &zahl_ergebniss ) ;
+	printf ( "Die addition der int Zahl mit der float Zahl ergibt : %f+%fi\n" , zahl_ergebniss.float_daten.real , zahl_ergebniss.float_daten.imaginaer ) ;
 
+	COMP_addition_komplex ( zahl_float_1 , zahl_float_2 , &zahl_ergebniss ) ;
+	printf ( "Die addition der beiden float Zahlen ergibt : %f+%fi\n" , zahl_ergebniss.float_daten.real , zahl_ergebniss.float_daten.imaginaer ) ;
 	return 0 ;
 }
