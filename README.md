@@ -18,19 +18,19 @@ Ich hab für beide kompilationsporozesse jeweils den Compiler gcc verwendet.
 Die library kann einfach mit einem beliebigen Compiler kompiliert werden. ES muss zuerst das Objectfile (.o) aus der C-Datei (.c) erstellt werden. 
 
 Beispiel: 
-´´´
+```
 gcc -c COMP_lib.c -o COMP_lib.o
-´´´
+```
 Anschließend muss das Archiv (.a) aus dem OBjectfile erstellt werden.
 Beispiel:
-´´´
+```
 ar rcs libCOMP_lib.a COMP_lib.o
-´´´
+```
 
 ### Programm
 Das Programm kann ebenfalls mit einem beliebigen Compiler einfach kompiliert werden. Dazu muss einmal die library COMP_lib, mit dem library search path, gelinkt werden sowie mathematische Bibiliothek eingebunden werden.
 
 Beispiel:
-´´´
+```
 gcc main.c -o main.elf -L. -lCOMP_lib -lm
-´´´
+```
