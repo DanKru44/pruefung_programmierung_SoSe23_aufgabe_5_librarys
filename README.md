@@ -22,6 +22,7 @@ Beispiel:
 gcc -c COMP_lib.c -o COMP_lib.o
 ```
 Anschließend muss das Archiv (.a) aus dem OBjectfile erstellt werden.
+
 Beispiel:
 ```
 ar rcs libCOMP_lib.a COMP_lib.o
