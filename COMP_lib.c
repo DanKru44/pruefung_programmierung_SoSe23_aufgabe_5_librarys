@@ -60,10 +60,12 @@ void COMP_addition_komplex ( COMP_komplex komplexe_zahl_1 , COMP_komplex komplex
 			komplex_ergebniss -> float_daten.real = komplexe_zahl_1.float_daten.real + komplexe_zahl_2.int_daten.real ;
 			komplex_ergebniss -> float_daten.imaginaer = komplexe_zahl_1.float_daten.imaginaer + komplexe_zahl_2.int_daten.imaginaer ;
 		}
-		else
-		{
-			printf ( "Ungültige Typen einer oder beider komplexen Zahlen\n" ) ;
-		}
 	}
+	
+	else
+	{
+		printf ( "Ungültige Typen einer oder beider komplexen Zahlen\n" ) ;
+	}
+	
 }
 
