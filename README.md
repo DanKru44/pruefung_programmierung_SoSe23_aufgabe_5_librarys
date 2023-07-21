@@ -21,7 +21,7 @@ Beispiel:
 ```
 gcc -c COMP_lib.c -o COMP_lib.o
 ```
-Anschließend muss das Archiv (.a) aus dem OBjectfile erstellt werden.
+Anschließend muss das Archiv (.a) aus dem Objectfile erstellt werden.
 
 Beispiel:
 ```
