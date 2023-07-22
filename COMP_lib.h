@@ -34,6 +34,7 @@ float COMP_berechnung_2_norm_float ( COMP_komplex komplex_gleitkomma ) ;
 
 void COMP_addition_komplex ( COMP_komplex komplexe_zahl_1 , COMP_komplex komplexe_zahl_2 , COMP_komplex *komplex_ergebniss ) ;
 
+void COMP_ausgabe_eulerform ( COMP_komplex komplexe_zahl_euler ) ;
 
 #endif
 
