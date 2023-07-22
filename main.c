@@ -53,5 +53,8 @@ int main ()
 
 	COMP_addition_komplex ( zahl_float_1 , zahl_float_2 , &zahl_ergebniss ) ;
 	printf ( "Die addition der beiden float Zahlen ergibt : %f+%fi\n" , zahl_ergebniss.float_daten.real , zahl_ergebniss.float_daten.imaginaer ) ;
+
+	COMP_ausgabe_eulerform ( zahl_int_1 ) ;
+
 	return 0 ;
 }
