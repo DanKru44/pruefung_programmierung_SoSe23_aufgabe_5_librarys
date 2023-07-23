@@ -1,7 +1,7 @@
 # Librarys
 In diesem Repo befindet sich die Bearbeitung der Aufgabe 5 der Modulprüfung Programmierung im Sommersemester 2023. 
 
-Dieses Repo enthält eine library die den Umgang mit komplexen Zahlen geschrieben wurde. Für das Rechnen mit Komplexen Zahlen wurde hierfür Zwei Datentypen angelegt. COMP_int und COMP-float. Für diese beiden Datentypen gibt es jeweils eine Funktion um die 2-Nrom zu bestimmen. In der library befindet sich ebenfalls eine Funktion zum addieren zweier COMP_Elemente und eine Funktion zum ausgeben eines COMP_Elements in Eulerform.
+Dieses Repo enthält eine library die den Umgang mit komplexen Zahlen geschrieben wurde. Für das Rechnen mit Komplexen Zahlen wurde hierfür Zwei Datentypen angelegt. COMP_int und COMP-float. Für diese beiden Datentypen gibt es jeweils eine Funktion um die 2-Norm zu bestimmen. In der library befindet sich ebenfalls eine Funktion zum addieren zweier COMP_Elemente und eine Funktion zum ausgeben eines COMP_Elements in Eulerform.
 
 In diesem Repo befindet sich ebenfalls ein C-Programm dass mir zum testen der Funktionen diente. In diesem Programm werden die Funktionen nach einander aufgerufen und die Ergebnisse ins Terminal geprintet.
 
@@ -30,7 +30,7 @@ Die weiteren Informationen die die Struktur benötigt sind der real- und der ima
 
 Die Strukturt sieht damit folgerndermaßen aus:
  - COMP_int:
-	COMP_komplex "Structname" = 
+	COMP_komplex "Unionname" = 
 	{
 		.typ = COMP_int ,
 		.int_daten.real = "Integer Wert" ,
@@ -38,7 +38,7 @@ Die Strukturt sieht damit folgerndermaßen aus:
 	} ; 
 
 - COMP_float:
-	COMP_komplex "Structname" =
+	COMP_komplex "Unionname" =
 	{ 
 		.typ = COMP_float ,
 		.float_daten.real = "float Wert" ,
@@ -65,9 +65,9 @@ COMP_komplex zahl_float =
 } ;
 ```
 
-Zur Nutzung der Funktionen reicht es den Namen des angelegten structs zu übergeben. Dies gilt nicht bei der Übergabe des structs das für das Ergebniss der Funktion COMP_addition_komplex. Zur Nutzung dieser Funktion muss ein struct mit Namen erstellt, aber weder typ noch realteil oder imaginaer teil festgelegt, werden. Dies übernimmt die Funktion in Abhängigkeit der übergebenen Daten. Die Übergabe erfolgt mit dem Adressierungsoperator & vor dem struct. Ein Beispiel dazu findet sich in der Beschreibung der Funktion COMP_addition_komplex und in dem C-Programm main.c in diesem Repo.
+Zur Nutzung der Funktionen reicht es den Namen der angelegten Union zu übergeben. Dies gilt nicht bei der Übergabe der Union das für das Ergebniss der Funktion COMP_addition_komplex. Zur Nutzung dieser Funktion muss ein struct mit Namen erstellt, aber weder typ noch realteil oder imaginaer teil festgelegt, werden. Dies übernimmt die Funktion in Abhängigkeit der übergebenen Daten. Die Übergabe erfolgt mit dem Adressierungsoperator & vor der Union. Ein Beispiel dazu findet sich in der Beschreibung der Funktion COMP_addition_komplex und in dem C-Programm main.c in diesem Repo.
 
-Beispiel zum Anlegen des structs für das Ergebniss aus COMP_addition_komplex:
+Beispiel zum Anlegen der Union für das Ergebniss aus COMP_addition_komplex:
 ```
 COMP_komplex zahl_ergebniss ;
 ```
@@ -77,9 +77,9 @@ Die Funktionen zur Berechnung der 2-Norm von komplexen Zahlen lauten **COMP_bere
 
 Nutzung der Funktion:
 
-COMP_berechnung_2_norm_int ( "Structname" ) ;
+COMP_berechnung_2_norm_int ( "Unionname" ) ;
 
-COMP_berechnung_2_norm_float ("Structname" ) ;
+COMP_berechnung_2_norm_float ("Unionname" ) ;
 
 Beispiel zur Nutzung der Funktion COMP_berechnung_norm_int:
 ```
@@ -92,12 +92,12 @@ float ergebniss = COMP_berechnung_2_norm_float ( zahl_float ) ;
 ```
 
 ### Addition von komplexen Zahlen
-Die enthaltene Funktion zu addition von komplexen Zahlen lautet **COMP_addition:komplex**. Mit dieser Funktion können zwei komplexe Zahlen die mit der Datenstruktur COMP_komplex angelegt wurden addiert werden. Dabei ist es unabhängig ob diese vom typ COMP_int oder COMP_float sind. Die Funktion erkennt dies automatisch. Bei der Verwendung anderen Datenstrukturen gibt diese eine Fehlermeldung zurück. 
+Die enthaltene Funktion zu addition von komplexen Zahlen lautet **COMP_addition:komplex**. Mit dieser Funktion können zwei komplexe Zahlen die mit der Datenstruktur COMP_komplex angelegt wurden addiert werden. Dabei ist es unabhängig ob diese vom typ COMP_int oder COMP_float sind. Die Funktion erkennt dies automatisch. 
 Bei der Nutzung der Funktion müssen drei Parameter übergeben werden. Die beiden zu addierenden Zahlen und eine weitere Datenstruktur vom Typ COMP_komplex in der das Ergebniss gespeichert werden soll. Die beiden Zahlen die addiert werden sollen können einfach übergeben werden. Das Ergebniss muss allerdings mit Operator & zur Addressierung des Speicherbereiches übergeben werden. Ein Beispiel zum anlegen des Ergebnisses findet sich in Beschreibung der Datenstruktur und im Programm main.c ind diesem Repo.
 
 Nutzung der Funktion:
 
-COMP_addition_komplex ( "Structname" , "Structname" , &"Structname" ) ;
+COMP_addition_komplex ( "Unionname" , "Unionname" , &"Unionname" ) ;
 
 Beispiel zur Nutzung der Funktion COMP_addition_komplex:
 ```
@@ -105,6 +105,17 @@ COMP_addition_komplex ( zahl_int , zahl_float , &zahl_ergebniss ) ;
 ```
 
 ### Ausgaben von komplexen Zahlen in Euler-form
+Die Ausgabe der komplexen Zahlen in Euler-form erfolgt mit der Funktion **COMP_ausgabe_eulerform**. Dieser Funktion keine eine komplexe Zahl mit der Datenstruktur COMP_komplex übergeben und die Ausgab ins Terminal erfolgt in der Euler-form. Dabei ist der typ unabhängig von COMP_int und COMP_float, die Funktion prüft dies automatisch und wählt die richtige Ausgabe.
+Weitere Beispiele zur Nutzung der Funktion befinden sich im C-Programm main.c in diesem Repo.
+
+Nutzung der Funktion:
+
+COMP_ausgabe_eulerform ( "Unioname" ) ;
+
+Beispiel zur Nutzung der Funktion COMP_ausgabe_eulerform:
+```
+COMP_ausgabe_eulerform ( zahl_int ) ;
+```
 
 ## Editor 
 Die library sowie das C-Programm wurden mit dem Editor vim in der WSL geschrieben.
