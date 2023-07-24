@@ -14,7 +14,7 @@ Die Library ist dafür gedacht den Umgang mit komplexen Zahlen zu vereinfachen. 
 Beispiele zur Nutzung der Funktionen und zum anlegen der Datenstrukturen finden sich in dem C-Programm main.c in diesem Repo.
 
 ### Datenstruktur für die Funktionen 
-Für die Verwendung der Funktionen wird in der library eine eigene Datenstruktur für die komlexen Zahlen eingeführt. Diese heißt ***COMP_komplex***. Dies ist eine Union um die Verwendung einfacher zu machen. Der Name dieser Union ist COMP_komplex.
+Für die Verwendung der Funktionen wird in der library eine eigene Datenstruktur für die komplexen Zahlen eingeführt. Diese heißt ***COMP_komplex***. Dies ist eine Union um die Verwendung einfacher zu machen. Der Name dieser Union ist COMP_komplex.
 
 Bei der Anlegung der Struktur kann dieser ein beliebiger Name zugewiesen werden. 
 
@@ -65,7 +65,7 @@ COMP_komplex zahl_float =
 } ;
 ```
 
-Zur Nutzung der Funktionen reicht es den Namen der angelegten Union zu übergeben. Dies gilt nicht bei der Übergabe der Union das für das Ergebnis der Funktion COMP_addition_komplex. Zur Nutzung dieser Funktion muss ein struct mit Namen erstellt, aber weder typ noch realteil oder imaginaer teil festgelegt, werden. Dies übernimmt die Funktion in Abhängigkeit der übergebenen Daten. Die Übergabe erfolgt mit dem Adressierungsoperator & vor der Union. Ein Beispiel dazu findet sich in der Beschreibung der Funktion COMP_addition_komplex und in dem C-Programm main.c in diesem Repo.
+Zur Nutzung der Funktionen reicht es den Namen der angelegten Union zu übergeben. Dies gilt nicht bei der Übergabe der Union das für das Ergebnis der Funktion COMP_addition_komplex. Zur Nutzung dieser Funktion muss ein struct mit Namen erstellt, aber weder typ noch realteil oder imaginaer teil festgelegt, werden. Dies übernimmt die Funktion in Abhängigkeit der übergebenen Daten. Die Übergabe erfolgt mit dem Addressierungs Operator & vor der Union. Ein Beispiel dazu findet sich in der Beschreibung der Funktion COMP_addition_komplex und in dem C-Programm main.c in diesem Repo.
 
 Beispiel zum Anlegen der Union für das Ergebnis aus COMP_addition_komplex:
 ```
@@ -121,7 +121,7 @@ COMP_ausgabe_eulerform ( zahl_int ) ;
 Die library sowie das C-Programm wurden mit dem Editor vim in der WSL geschrieben.
 
 ## Kompilation
-Ich hab für beide kompilationsporozesse jeweils den Compiler gcc verwendet.
+Ich hab für beide Kompilationsprozesse jeweils den Compiler gcc verwendet.
 
 ### Library 
 Die library kann einfach mit einem beliebigen Compiler kompiliert werden. Es muss zuerst das Objectfile (.o) aus der C-Datei (.c) erstellt werden. 
@@ -143,4 +143,12 @@ Das Programm kann ebenfalls mit einem beliebigen Compiler einfach kompiliert wer
 Beispiel:
 ```
 gcc main.c -o main.elf -L. -lCOMP_lib -lm
+```
+
+## Ausführung 
+Das Programm kann einfach mit dem Befehl zum ausführen von Programmen gestartet werden.
+
+Beispiel für Ubuntu/WSL:
+```
+./main.elf
 ```
