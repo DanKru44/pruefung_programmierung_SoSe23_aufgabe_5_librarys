@@ -138,7 +138,7 @@ ar rcs libCOMP_lib.a COMP_lib.o
 ```
 
 ### Programm
-Das Programm kann ebenfalls mit einem beliebigen Compiler einfach kompiliert werden. Dazu muss einmal die library COMP_lib, mit dem library search path gelinkt werden, sowie mathematische Bibliothek eingebunden werden.
+Das Programm kann ebenfalls mit einem beliebigen Compiler einfach kompiliert werden. Dazu muss einmal die library COMP_lib, mit dem library search path gelinkt werden, sowie die mathematische Bibliothek eingebunden werden.
 
 Beispiel:
 ```
