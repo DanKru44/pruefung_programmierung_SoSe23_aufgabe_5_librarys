@@ -1,9 +1,9 @@
 # Prüfung SoSe 2023 Aufgabe 5
-In diesem Repo befindet sich die Bearbeitung der Aufgabe 5 der Modulprüfung Programmierung im Sommersemester 2023. 
+In diesem Repo befindet sich die Bearbeitung der Aufgabe 5 aus der Modulprüfung Programmierung im Sommersemester 2023. 
 
-Dieses Repo enthält eine library die den Umgang mit komplexen Zahlen geschrieben wurde. Für das Rechnen mit Komplexen Zahlen wurde hierfür Zwei Datentypen angelegt. COMP_int und COMP-float. Für diese beiden Datentypen gibt es jeweils eine Funktion um die 2-Norm zu bestimmen. In der library befindet sich ebenfalls eine Funktion zum addieren zweier COMP_Elemente und eine Funktion zum ausgeben eines COMP_Elements in Euler-Form.
+Dieses Repo enthält eine library die für den Umgang mit komplexen Zahlen geschrieben wurde. Für das Rechnen mit Komplexen Zahlen wurden hierfür Zwei Datentypen angelegt. COMP_int und COMP-float. Für diese beiden Datentypen gibt es jeweils eine Funktion, um die 2-Norm zu bestimmen. In der library befindet sich ebenfalls eine Funktion zum addieren zweier COMP_Elemente und eine Funktion zum Ausgeben eines COMP_Elements in Euler-Form.
 
-In diesem Repo befindet sich ebenfalls ein C-Programm dass mir zum testen der Funktionen diente. In diesem Programm werden die Funktionen nach einander aufgerufen und die Ergebnisse ins Terminal geprintet.
+In diesem Repo befindet sich ebenfalls ein C-Programm, dass mir zum testen der Funktionen diente. In diesem Programm werden die Funktionen nacheinander aufgerufen und die Ergebnisse ins Terminal geprintet.
 
 
 ## Dokumentation der Bibliothek
@@ -65,7 +65,7 @@ COMP_komplex zahl_float =
 } ;
 ```
 
-Zur Nutzung der Funktionen reicht es den Namen der angelegten Union zu übergeben. Dies gilt nicht bei der Übergabe der Union das für das Ergebnis der Funktion COMP_addition_komplex. Zur Nutzung dieser Funktion muss ein struct mit Namen erstellt, aber weder typ noch realteil oder imaginaer teil festgelegt, werden. Dies übernimmt die Funktion in Abhängigkeit der übergebenen Daten. Die Übergabe erfolgt mit dem Addressierungs Operator & vor der Union. Ein Beispiel dazu findet sich in der Beschreibung der Funktion COMP_addition_komplex und in dem C-Programm main.c in diesem Repo.
+Zur Nutzung der Funktionen reicht es den Namen der angelegten Union zu Übergeben. Dies gilt nicht bei der Übergabe der Union die für das Ergebnis der Funktion COMP_addition_komplex verwendet wird. Zur Nutzung dieser Funktion muss eine Union mit Namen erstellt, aber weder typ noch realteil oder imaginaer teil festgelegt werden. Dies übernimmt die Funktion in Abhängigkeit der übergebenen Daten. Die Übergabe erfolgt mit dem Addressierungs Operator & vor der Union. Ein Beispiel dazu findet sich in der Beschreibung der Funktion COMP_addition_komplex und in dem C-Programm main.c in diesem Repo.
 
 Beispiel zum Anlegen der Union für das Ergebnis aus COMP_addition_komplex:
 ```
@@ -105,7 +105,7 @@ COMP_addition_komplex ( zahl_int , zahl_float , &zahl_ergebniss ) ;
 ```
 
 ### Ausgaben von komplexen Zahlen in Euler-Form
-Die Ausgabe der komplexen Zahlen in Euler-Form erfolgt mit der Funktion **COMP_ausgabe_eulerform**. Dieser Funktion keine eine komplexe Zahl mit der Datenstruktur COMP_komplex übergeben und die Ausgab ins Terminal erfolgt in der Euler-form. Dabei ist der typ unabhängig von COMP_int und COMP_float, die Funktion prüft dies automatisch und wählt die richtige Ausgabe.
+Die Ausgabe der komplexen Zahlen in Euler-Form erfolgt mit der Funktion **COMP_ausgabe_eulerform**. Dieser Funktion kann eine komplexe Zahl mit der Datenstruktur COMP_komplex übergeben werden und die Ausgabe ins Terminal erfolgt in der Euler-form. Dabei ist der typ unabhängig von COMP_int und COMP_float, die Funktion prüft dies automatisch und wählt die richtige Ausgabe.
 Weitere Beispiele zur Nutzung der Funktion befinden sich im C-Programm main.c in diesem Repo.
 
 Nutzung der Funktion:
